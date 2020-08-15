@@ -1,0 +1,14 @@
+Instructions from your teacher:
+Navigate to http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx?ReturnUrl=%2fsamples%2fTestComplete12%2fWebOrders%2fDefault.aspx
+
+username is Tester
+password is test
+
+Fill the order form (button is on the left side)
+
+Verify your order is created in the the view all orders page(Verify Name , Product , Street , City , State , Zip , Card , Card number , Exp )
+
+Verify items count are increased in the view all orders page
+
+Create an orders with 3 different product type in the dropdown.
+

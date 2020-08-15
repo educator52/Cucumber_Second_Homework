@@ -1,0 +1,11 @@
+Instructions from your teacher:
+
+Navigate to http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx?ReturnUrl=%2fsamples%2fTestComplete12%2fWebOrders%2fDefault.aspx
+
+username is Tester
+password is test
+
+Verify the data for the Bob Feather
+Data should be as following
+
+|FamilyAlbum| |14, North av. | |Milltown, WI  | |US | |81734| |VISA| |111222111222   | |06/08 |

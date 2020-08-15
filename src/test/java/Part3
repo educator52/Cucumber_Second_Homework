@@ -1,0 +1,13 @@
+Instructions from your teacher:
+
+Navigate to http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx?ReturnUrl=%2fsamples%2fTestComplete12%2fWebOrders%2fDefault.aspx
+username is Tester
+password is test
+
+Fill the order form (button is on the left side)
+
+Create a all the negative scenarios. (For example do not enter the customer name )
+
+Test all possible options.
+
+And verify order is not created.

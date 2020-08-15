@@ -1,0 +1,15 @@
+Instructions from your teacher:
+Each homework should be created in the BDD page object model.
+Use a feature file , step definition and page class.
+
+
+Navigate to http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx?ReturnUrl=%2fsamples%2fTestComplete12%2fWebOrders%2fDefault.aspx
+
+username is Tester
+password is test
+
+Verify 8 items are displayed in the view all orders page
+
+Delete all items in the table
+
+Verify item count is 0
