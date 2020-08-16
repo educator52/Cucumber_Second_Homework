@@ -17,10 +17,13 @@ import java.util.Map;
 public class Part2Steps extends BaseDriver {
 
     private Part2POM pom = new Part2POM(driver);
+    int numOrders;
+    int numNewOrders;
 
-    @Then("^I fill the order form and confirm$")
+    @Then("^I fill the order form and confirm with 3 different product$")
     public void iFillTheOrderForm(DataTable table) {
         List<Map<String, String>> mapList = table.asMaps(String.class, String.class);
+        numNewOrders = mapList.size();
         for ( Map<String, String> row: mapList) {
             for (String key: row.keySet()) {
                 runOrderFieldProcess( key, row.get(key) );
@@ -107,7 +110,9 @@ public class Part2Steps extends BaseDriver {
 
     @When("^I click on Order$")
     public void iClickOnOrder() {
+        numOrders = pom.orderList.size();
         pom.orderButton.click();
+
     }
 
     @And("^I click on View All Order button$")
@@ -120,18 +125,19 @@ public class Part2Steps extends BaseDriver {
     @Then("^I verify my orders\\.$")
     public void iVerifyMyOrders(DataTable table) {
         List<Map<String, String>> mapList = table.asMaps(String.class, String.class);
+        int count = 1;
         for ( Map<String, String> row: mapList) {
             for (String key: row.keySet()) {
-                checkOrder( key, row.get(key) );
+                checkOrder( key, row.get(key), mapList.size()-count );
             }
-            pom.orderProcessButton.click();
+            count++;
         }
     }
 
-    public void checkOrder(String key, String value) {
-        for (WebElement element:pom.orderList){
+    public void checkOrder(String key, String value, int rowNum) {
 
-            String text=null;
+        WebElement element = pom.orderList.get(rowNum);
+        String text=null;
             switch (key) {
                 case "Product":
                     text = element.findElement(pom.productColumn).getText();
@@ -166,12 +172,15 @@ public class Part2Steps extends BaseDriver {
                 default:
                     Assert.fail(key + " not implemented for search fields");
             }
+            System.out.println(value);
             Assert.assertEquals(value, text);
-
-        }
-
-
 
     }
 
+    @And("^I verified that the items count are increased in the view all orders page$")
+    public void iVerifiedThatTheItemsCountAreIncreasedInTheViewAllOrdersPage() {
+        int totalNumberOfOrders = pom.orderList.size();
+
+        Assert.assertEquals(totalNumberOfOrders, numOrders+numNewOrders);
+    }
 }

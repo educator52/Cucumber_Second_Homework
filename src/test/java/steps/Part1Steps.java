@@ -4,7 +4,6 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import poms.Part1POM;
@@ -15,7 +14,6 @@ import java.util.List;
 public class Part1Steps extends BaseDriver {
 
     private Part1POM pom = new Part1POM(driver);
-
 
     @Given("^I navigate to \"([^\"]*)\"$")
     public void i_navigate_to(String URL) {
@@ -41,7 +39,7 @@ public class Part1Steps extends BaseDriver {
 
         List<WebElement> items = pom.orderList;
 
-        Assert.assertEquals(itemCount, items.size());
+        Assert.assertEquals(items.size(), itemCount);
 
     }
 
@@ -66,7 +64,7 @@ public class Part1Steps extends BaseDriver {
         } else {
 
             String listOfOrderText = pom.emptyListWarningText.getText();
-
+            System.out.println(listOfOrderText);
             Assert.assertTrue(listOfOrderText.contains("empty"));
 
         }
