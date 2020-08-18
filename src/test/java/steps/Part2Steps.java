@@ -44,6 +44,8 @@ public class Part2Steps extends BaseDriver {
             case "ScreenSaver":
                 select.selectByVisibleText("ScreenSaver");
                 break;
+            case "":
+                break;
             default:
                 Assert.fail(product + " not implemented for search fields");
         }
@@ -63,6 +65,8 @@ public class Part2Steps extends BaseDriver {
                 break;
             case "americanexpress":
                 cardTypes.get(2).click();
+                break;
+            case "":
                 break;
             default:
                 Assert.fail(product + " not implemented for search fields");
@@ -179,6 +183,7 @@ public class Part2Steps extends BaseDriver {
 
     @And("^I verified that the items count are increased in the view all orders page$")
     public void iVerifiedThatTheItemsCountAreIncreasedInTheViewAllOrdersPage() {
+
         int totalNumberOfOrders = pom.orderList.size();
 
         Assert.assertEquals(totalNumberOfOrders, numOrders+numNewOrders);

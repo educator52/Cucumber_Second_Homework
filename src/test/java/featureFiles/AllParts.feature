@@ -26,21 +26,19 @@ Feature: Second Homework
 
   Scenario: Successful the Part3 to complete.
     When I click on Order
-    Then I fill the order form and confirm
+    Then I fill the order with all possible negative options form and I confirm error messages.
       | Product     | Quantity | CostumerName     | Street          | City         | State   | Zip   | CardType        | CardNo     | Exp.Date |
       | FamilyAlbum |          | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            | 0123456789 | 03/22    |
-    And I confirm Error in Quantity and click reset
-    Then I fill the order form and confirm
-      | Product     | Quantity | CostumerName     | Street          | City         | State   | Zip   | CardType        | CardNo     | Exp.Date |
+      | FamilyAlbum | 0        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            | 0123456789 | 03/22    |
       | FamilyAlbum | 3        |                  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            | 0123456789 | 03/22    |
-    And I confirm Error in CostumerName and click reset
-
-
-
-#  Fill the order form (button is on the left side)
-#
-#  Create a all the negative scenarios. (For example do not enter the customer name )
-#
-#  Test all possible options.
-#
-#    And verify order is not created.
+      | FamilyAlbum | 3        | Albert Einstein  |                 | Weissenthurm | Germany | 56575 | Visa            | 0123456789 | 03/22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  |              | Germany | 56575 | Visa            | 0123456789 | 03/22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany |       | Visa            | 0123456789 | 03/22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | zip   | Visa            | 0123456789 | 03/22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 |                 | 0123456789 | 03/22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            |            | 03/22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            | cardNo     | 03/22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            | 0123456789 |          |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            | 0123456789 | 03.22    |
+      | FamilyAlbum | 3        | Albert Einstein  | Bahnhofstr. 30  | Weissenthurm | Germany | 56575 | Visa            | 0123456789 | 23/Sep   |
+    And I verify order is not created.
