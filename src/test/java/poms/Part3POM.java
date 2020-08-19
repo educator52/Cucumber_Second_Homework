@@ -11,12 +11,6 @@ public class Part3POM extends Part2POM{
         super(driver);
     }
 
-//    @FindBy(id = "ctl00_MainContent_fmwOrder_RegularExpressionValidator1")
-//    public WebElement quantityErrorTextBox;
-//
-//    @FindBy(id = "ctl00_MainContent_fmwOrder_RequiredFieldValidator2")
-//    public WebElement costumerNameErrorTextBox;
-
     @FindBy(css = "[value=\"Reset\"]")
     public WebElement resetButton;
 

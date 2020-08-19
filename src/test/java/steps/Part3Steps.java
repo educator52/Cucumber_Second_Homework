@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
@@ -19,10 +20,10 @@ public class Part3Steps extends BaseDriver {
     @Then("^I fill the order with all possible negative options form and I confirm error messages\\.$")
     public void checkErrorMessages(DataTable table) {
         List<Map<String,String>> mapsList = table.asMaps(String.class, String.class);
+        Part2Steps methods = new Part2Steps();
         for (Map<String,String> row:mapsList) {
             for (String key:row.keySet()) {
-                Part2Steps methods = new Part2Steps();
-                methods.runOrderFieldProcess( key, row.get(key) );
+                methods.fillOrderFields( key, row.get(key) );
             }
             pom.orderProcessButton.click();
             checkErrorMessage();
@@ -92,7 +93,6 @@ public class Part3Steps extends BaseDriver {
 
     }
 
-
     @And("^I verify order is not created\\.$")
     public void iVerifyOrderIsNotCreated() {
         pom.viewAllOrdersButton.click();
@@ -100,4 +100,5 @@ public class Part3Steps extends BaseDriver {
 
         Assert.assertEquals(totalNumberOfOrders, 8);
     }
+
 }

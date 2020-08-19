@@ -26,7 +26,7 @@ public class Part2Steps extends BaseDriver {
         numNewOrders = mapList.size();
         for ( Map<String, String> row: mapList) {
             for (String key: row.keySet()) {
-                runOrderFieldProcess( key, row.get(key) );
+                fillOrderFields( key, row.get(key) );
             }
             pom.orderProcessButton.click();
         }
@@ -73,7 +73,7 @@ public class Part2Steps extends BaseDriver {
         }
     }
 
-    public void runOrderFieldProcess(String key, String value) {
+    public void fillOrderFields(String key, String value) {
 
         switch (key) {
             case "Product":
@@ -131,18 +131,19 @@ public class Part2Steps extends BaseDriver {
         List<Map<String, String>> mapList = table.asMaps(String.class, String.class);
         int count = 1;
         for ( Map<String, String> row: mapList) {
+            int rowNumberForCheck = mapList.size()-count;
             for (String key: row.keySet()) {
-                checkOrder( key, row.get(key), mapList.size()-count );
+                String cellText = getTextFromCell(rowNumberForCheck, key);
+                Assert.assertEquals(row.get(key), cellText);
             }
             count++;
         }
     }
 
-    public void checkOrder(String key, String value, int rowNum) {
-
-        WebElement element = pom.orderList.get(rowNum);
+    public String getTextFromCell(int rowNumber, String columnName) {
+        WebElement element = pom.orderList.get(rowNumber);
         String text=null;
-            switch (key) {
+            switch (columnName) {
                 case "Product":
                     text = element.findElement(pom.productColumn).getText();
                     break;
@@ -174,11 +175,9 @@ public class Part2Steps extends BaseDriver {
                     text = element.findElement(pom.expiredDateColumn).getText();
                     break;
                 default:
-                    Assert.fail(key + " not implemented for search fields");
+                    Assert.fail(columnName + " not implemented for search fields");
             }
-            System.out.println(value);
-            Assert.assertEquals(value, text);
-
+            return text;
     }
 
     @And("^I verified that the items count are increased in the view all orders page$")
