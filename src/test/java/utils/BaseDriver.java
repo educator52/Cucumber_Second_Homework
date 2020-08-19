@@ -25,31 +25,9 @@ public class BaseDriver {
         random = new Random();
     }
 
-    public void waitAndClick(WebElement element){
-
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(element));
-        element.click();
+    public static void quitDriver(){
+        driver.quit();
     }
-
-    public void waitClickWait(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(element));
-        element.click();
-        wait.until(ExpectedConditions.invisibilityOf(element));
-    }
-
-    public String waitAndGetText(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(element));
-        return element.getText();
-    }
-
-    public void clearTextBoxAndSendKeys(WebElement element, String keys){
-        element.clear();
-        element.sendKeys(keys);
-    }
-
 
 
 }
