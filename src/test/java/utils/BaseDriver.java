@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class BaseDriver {
 
-    protected static WebDriver driver;
+    public static WebDriver driver;
     protected static WebDriverWait wait;
     protected static Random random;
 
@@ -28,6 +28,5 @@ public class BaseDriver {
     public static void quitDriver(){
         driver.quit();
     }
-
 
 }
