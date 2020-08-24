@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Second Homework Suite">
+    <test name="All tests">
+        <classes>
+            <class name="runners.Runner"/>
+        </classes>
+    </test>
+</suite>
+
+
+<!--Don't test the same website parallel even different browsers, that can break your test-->
